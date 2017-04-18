@@ -1,0 +1,18 @@
+\newcounter{paperCounter}
+\renewcommand\thepaperCounter{\arabic{paperCounter}}
+
+\newcommand{\paperecvitem}[2]{\ecvitem{
+\refstepcounter{paperCounter}
+#1
+}{[\thepaperCounter] #2}}
+\newcommand{\paperref}[1]{[\ref{#1}]}
+
+\renewcommand{\cite}[1]{[\ref{#1}]}
+
+%an item containing additional information e.g. projects and references
+\newcommand{\ecvitemproj}[3][]{\ecvitem{#2}{#3 #1}}
+
+\newenvironment{cvitemize}{\begin{itemize}[noitemsep,nolistsep,topsep=0em,partopsep=0em]  
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}{\end{itemize}}

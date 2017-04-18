@@ -1,0 +1,7 @@
+*.aux
+cv_eu.bbl
+*.blg
+*.out
+*.synctex.gz
+*.backup
+python/.idea*

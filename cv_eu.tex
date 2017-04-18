@@ -1,0 +1,99 @@
+\documentclass[utf8, a4paper, nologo, noflag, 10pt, helvetica, narrow, booktabs, totpages, english]{europecv}
+\usepackage{graphicx}                        % Required to draw the flag
+\usepackage[a4paper, left=1cm, right=1cm, top=1.5cm, bottom=1.77cm]{geometry}
+% TODO: check margins in word
+\usepackage{babel}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+%%%definitions for additional macro commands
+\input{defines}
+
+\ecvLogoWidth{12mm}		             % Size logo europass
+%\ecvLeftColumnWidth{4cm}		     % Size of column and vertical line (different from standard)
+%\ecvfootnote{footnote}	                     % Foot notes
+
+% Commands europecv
+%%% General personal information
+\input{personal}
+
+\begin{document}
+
+% Begin europecv environment
+
+\begin{europecv}
+
+
+
+\ecvpersonalinfo		% Print personal info in preamble
+
+\ecvitem{}{}		% 1 free line - \ecvitem{}{} adds elements to a section
+%\ecvsection{}		% \ecvsection{} adds sections
+
+
+% Sections
+
+% Personal competences
+\input{summary}
+\\
+
+%work and education
+
+\input{work}
+
+\\
+% Lenguages
+% Mothertongue
+
+% \ecvmothertongue[10pt]{Russian}
+\ecvmothertongue{Russian}
+% 10pt leave a one-char line space before the text
+\ecvitem{Other languages(s)}{English, Norwegian}
+
+\input{skills-and-other}
+
+%% Table for common lenguage evaluation
+%
+%\ecvlanguageheader{(*)}
+%\ecvlanguage{English}{\ecvCOne}{\ecvCOne}{\ecvCOne}{\ecvCOne}{\ecvCOne}	         % second language and levels
+%      % Language levels A1 - A2 - B1 - B2 - C1 - C2 from basic to advanced.
+%      % in this package are \ecv + A, B or C and the sub-level in letters (One or Two)
+%\ecvlanguage{French}{\ecvBTwo}{\ecvBTwo}{\ecvBTwo}{\ecvBTwo}{\ecvBTwo}       % third
+%\ecvlastlanguage{Russian}{\ecvAOne}{\ecvATwo}{\ecvBOne}{\ecvCTwo}{\ecvBTwo} 	% last language
+%
+%\ecvlanguagefooter{(*)}\\
+% Social skills
+%\ecvitem{Social skills and competences}{- First social skill;\\& - Second social skill}\\
+% Technical skills
+%\ecvitem{Technical skills and competences}{- First technical skill;\\& - Second technical skill}\\
+% Computer skills
+%\ecvitem{Computer skills and competences}{- First skill;\\& - Second}\\
+% Other skills
+%\ecvitem{Other skills and competences}{- First otherskill}\\
+% Driving Licence
+%\ecvitem{Driving licence(s)}{Category and Type}\\
+% Annexes
+
+%\ecvsection{Annexes}
+%\ecvitem{}{On request:}
+%\ecvitem{}{Birth certificate}
+%\ecvitem{}{Passport}
+%\ecvitem{}{Driving licence}
+%\ecvitem{}{Criminal record certificate}
+%\ecvitem{}{University study plan}
+%\ecvitem{}{}
+
+% Disclaimer
+%\ecvsection{Disclaimer}
+%\ecvitem{}{This informations may be used for all purposes permitted by law and under the Data Protection Act 1998.\\&
+%Autorizzo l'utilizzo dei dati personali contenuti nel presente curriculum ai sensi del D.Lgs. 196/2003 e s.m.i. (Codice in materia di protezione dei dati personali)}
+
+
+
+\\
+%TODO iclude reports
+\input{python/publications}
+
+\end{europecv}
+\end{document}
