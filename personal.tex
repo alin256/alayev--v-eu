@@ -22,5 +22,8 @@
 % Other personal info
 
 \ecvnationality{Russia}
-%\ecvdateofbirth{NOT SHOWN}
+\ifdefined\birthdate
+  \ecvdateofbirth{\birthdate}
+\else
+\fi
 \ecvgender{Male}
