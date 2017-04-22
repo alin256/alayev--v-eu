@@ -146,7 +146,11 @@ class bibentry(object):
                 out += ' (' + self.fields['publisher']+')'
             elif 'organization' in self.fields:
                 out += ' (' + self.fields['organization']+')'
-        return out
+
+        if (len(out)>0):
+            return out+'.'
+        else:
+            return ''
 
     def get_abbreviation(self):
         """

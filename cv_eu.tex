@@ -1,4 +1,4 @@
-\documentclass[utf8, a4paper, nologo, noflag, 10pt, helvetica, narrow, booktabs, totpages, english]{europecv}
+\documentclass[utf8, a4paper, nologo, noflag, 11pt, helvetica, narrow, booktabs, totpages, english]{europecv}
 \usepackage{graphicx}                        % Required to draw the flag
 \usepackage[a4paper, left=1cm, right=1cm, top=1.5cm, bottom=1.77cm]{geometry}
 % TODO: check margins in word
@@ -29,9 +29,15 @@
 
 \ecvpersonalinfo		% Print personal info in preamble
 
+
+% \ecvmothertongue[10pt]{Russian}
+\ecvmothertongue{Russian}
+% 10pt leave a one-char line space before the text
+\ecvitem{Other languages(s)}{English, Norwegian}
+\input{researcherinfo}
+
 \ecvitem{}{}		% 1 free line - \ecvitem{}{} adds elements to a section
 %\ecvsection{}		% \ecvsection{} adds sections
-
 
 % Sections
 
@@ -41,18 +47,17 @@
 
 %work and education
 
+
+
 \input{work}
 
 \\
 % Lenguages
 % Mothertongue
 
-% \ecvmothertongue[10pt]{Russian}
-\ecvmothertongue{Russian}
-% 10pt leave a one-char line space before the text
-\ecvitem{Other languages(s)}{English, Norwegian}
 
 \input{skills-and-other}
+\input{collaborations}
 
 %% Table for common lenguage evaluation
 %
