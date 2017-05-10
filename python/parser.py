@@ -132,6 +132,10 @@ class bibentry(object):
             out += 'PhD thesis. '
             if 'school' in self.fields:
                 out += self.fields['school']
+        elif self.entry_type.lower().find('techreport')>=0:
+            out += 'Technical report. '
+            if 'institution' in self.fields:
+                out += self.fields['institution']
         elif 'journal' in self.fields:
             if self.entry_type.lower() == 'unpublished':
                 out += "submitted to "
@@ -146,6 +150,8 @@ class bibentry(object):
                 out += ' (' + self.fields['publisher']+')'
             elif 'organization' in self.fields:
                 out += ' (' + self.fields['organization']+')'
+            #elif 'institution' in self.fields:
+            #    out += ' (' + self.fields['institution']+')'
 
         if (len(out)>0):
             return out+'.'
@@ -334,14 +340,14 @@ def default_entry_filter(entry):
     return True
 
 
-def entry_filter_type(entry, type=''):
+def compare_entry_filter_type(entry, type=''):
     """
 
     :param entry:
     :param type:
     :return:
     """
-    if entry.entry_type.lower() == type:
+    if entry.entry_type.lower() == type.lower():
         return True
     return False
 
@@ -354,6 +360,14 @@ def write_file_default(file, entries, entry_filter=default_entry_filter,
     :param entries: collection of bibentries
     :return: returns set of written items
     """
+
+    #check if there is at lest one entry
+    for entry in entries:
+        if entry_filter(entry) and (not entry in written):
+            continue
+        else:
+            return written
+
     file.write(prefix)
     #write entries
     for entry in entries:
@@ -378,7 +392,7 @@ if __name__ == '__main__':
         print("Processing file: ", filename)
         print(my_args)
     else:
-        print("Usage ... -f filename -p author_family_name")
+        print("Usage ... -f filename -o output_file_name -p author_family_name")
         exit()
 
     person_name = None
@@ -392,19 +406,47 @@ if __name__ == '__main__':
     for entry in sorted_entries:
         print(entry)
 
-    file = open('publications.tex', 'w')
+    output_file_name = 'publications.tex'
+    if '-o' in my_args:
+        output_file_name = my_args['-o']
+        print("Outputting to: ", output_file_name)
+
+
+    file = open(output_file_name, 'w')
     #write prefix
 
     file.write(file_prefix)
     #writting out articles
-    def my_filter(entry):
-        return entry_filter_type(entry, type='article')
+    def filter_articles(entry):
+        return compare_entry_filter_type(entry, type='article')
+
+
+    #initializing a set of written items
+    written = set()
+
     written = write_file_default(file, sorted_entries,
-                                 entry_filter=my_filter,
-                                 prefix='\\ecvitem{\\highlight{Publications}}{Journal Articles}\n')
+                                 entry_filter=filter_articles,
+                                 prefix='\\ecvitem{\\highlight{Publications}}{Journal Articles}\n',
+                                 written=written)
+
+    #writting out articles
+    def filter_exclude_reports(entry):
+        return not compare_entry_filter_type(entry, type='TechReport')
+
     write_file_default(file, sorted_entries,
+                       entry_filter=filter_exclude_reports,
                        prefix='\\ecvitem{\\highlight{Other publications}}{}\n',
                        written=written)
+
+    #writting out articles
+    def filter_reports(entry):
+        return compare_entry_filter_type(entry, type='TechReport')
+
+    write_file_default(file, sorted_entries,
+                       entry_filter=filter_reports,
+                       prefix='\\ecvitem{\\highlight{Technical Reports}}{}\n',
+                       written=written)
+
 
     file.write(file_suffix)
     file.close()

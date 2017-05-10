@@ -5,3 +5,6 @@ cv_eu.bbl
 *.synctex.gz
 *.backup
 python/.idea*
+python/publications_test.tex
+python/publications_test.bbl
+python/publications_test.pdf
