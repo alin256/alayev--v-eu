@@ -362,11 +362,12 @@ def write_file_default(file, entries, entry_filter=default_entry_filter,
     """
 
     #check if there is at lest one entry
+    count = 0
     for entry in entries:
         if entry_filter(entry) and (not entry in written):
-            continue
-        else:
-            return written
+            count += 1
+    if count == 0:
+        return written
 
     file.write(prefix)
     #write entries
